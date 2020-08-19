@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="https://kit.fontawesome.com/ec5f17387f.js"></script>
+	<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+	<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{../css/style.css}">
+	<link rel="stylesheet" th:href="@{../css/registro.css}">
+	<!-- Título de la página  e icono-->
+	<title>OnliReloj</title>
+	<link rel="icon" type="image/png" th:href="@{../images/icono.png}">
+</head>
+<body>
+
+	<header th:insert="/fragments/menu :: menu-principal"></header>
+	<main>
+		<div class="form">
+			<ul class="tab-group">
+				<li class="tab active"><a href="#signup">Registro</a></li>
+				<li class="tab"><a href="#login">Autenticación</a></li>
+			</ul>
+
+			<div class="tab-content">
+				<div id="signup">
+					<h1>Registrate gratis</h1>
+					<form action="/" method="post">
+						<div class="top-row">
+							<div class="field-wrap">
+								<label>Nombre<span class="req">*</span>
+								</label> <input type="text" required autocomplete="off" />
+							</div>
+
+							<div class="field-wrap">
+								<label>Correo<span class="req">*</span>
+								</label> <input type="email" required autocomplete="off" />
+							</div>
+						</div>
+						
+						<div class="field-wrap">
+							<label>Celular<span class="req">*</span>
+							</label> <input type="number" required autocomplete="off" />
+						</div>
+
+						<div class="field-wrap">
+							<label>Cédula<span class="req">*</span>
+							</label> <input type="number" required autocomplete="off" />
+						</div>
+
+						<div class="field-wrap">
+							<label>Contraseña<span class="req">*</span>
+							</label> <input type="password" required autocomplete="off" />
+						</div>
+
+						<button type="submit" class="button button-block">Validar</button>
+
+					</form>
+
+				</div>
+
+				<div id="login">
+					<h1>Iniciar Sesión</h1>
+
+					<form action="/" method="post">
+
+						<div class="field-wrap">
+							<label>Cédula<span class="req">*</span>
+							</label> <input type="number" required autocomplete="off" />
+						</div>
+
+						<div class="field-wrap">
+							<label>Contraseña<span class="req">*</span>
+							</label> <input type="password" required autocomplete="off" />
+						</div>
+						
+						<button class="button button-block">Validar</button>
+
+					</form>
+				</div>
+			</div><!-- tab-content -->
+		</div><!-- /form -->
+	</main>
+
+	<footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+
+    <!-- ================================================== -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+	
+	<script>
+	$('.form').find('input, textarea').on('keyup blur focus', function (e) {
+		  
+		  var $this = $(this),
+		      label = $this.prev('label');
+
+			  if (e.type === 'keyup') {
+					if ($this.val() === '') {
+		          label.removeClass('active highlight');
+		        } else {
+		          label.addClass('active highlight');
+		        }
+		    } else if (e.type === 'blur') {
+		    	if( $this.val() === '' ) {
+		    		label.removeClass('active highlight'); 
+					} else {
+				    label.removeClass('highlight');   
+					}   
+		    } else if (e.type === 'focus') {
+		      
+		      if( $this.val() === '' ) {
+		    		label.removeClass('highlight'); 
+					} 
+		      else if( $this.val() !== '' ) {
+				    label.addClass('highlight');
+					}
+		    }
+
+		});
+
+		$('.tab a').on('click', function (e) {
+		  
+		  e.preventDefault();
+		  
+		  $(this).parent().addClass('active');
+		  $(this).parent().siblings().removeClass('active');
+		  
+		  target = $(this).attr('href');
+
+		  $('.tab-content > div').not(target).hide();
+		  
+		  $(target).fadeIn(600);
+		  
+		});
+	</script>
+</body>
+</html>
