@@ -10,7 +10,7 @@
 	<link rel="stylesheet" th:href="@{../css/style.css}">
 	<link rel="stylesheet" th:href="@{../css/registro.css}">
 	<!-- Título de la página  e icono-->
-	<title>OnliReloj</title>
+	<title>OnliReloj | Registro</title>
 	<link rel="icon" type="image/png" th:href="@{../images/icono.png}">
 </head>
 <body>
@@ -26,32 +26,32 @@
 			<div class="tab-content">
 				<div id="signup">
 					<h1>Registrate gratis</h1>
-					<form action="/" method="post">
+					<form th:action="@{/user/save}" th:object="${usuario}" method="post">
 						<div class="top-row">
 							<div class="field-wrap">
-								<label>Nombre<span class="req">*</span>
-								</label> <input type="text" required autocomplete="off" />
+								<label>Nombre*</span></label>
+								<input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" required="required" />
 							</div>
 
 							<div class="field-wrap">
 								<label>Correo<span class="req">*</span>
-								</label> <input type="email" required autocomplete="off" />
+								</label> <input type="email" class="form-control" th:field="*{correo}" id="correo" name="correo" required="required" />
 							</div>
 						</div>
 						
 						<div class="field-wrap">
 							<label>Celular<span class="req">*</span>
-							</label> <input type="number" required autocomplete="off" />
+							</label> <input type="number" class="form-control" th:field="*{celular}" id="celular" name="celular" required="required" />
 						</div>
 
 						<div class="field-wrap">
 							<label>Cédula<span class="req">*</span>
-							</label> <input type="number" required autocomplete="off" />
+							</label> <input type="number" class="form-control" th:field="*{cedula}" id="cedula" name="cedula" required="required"/>
 						</div>
 
 						<div class="field-wrap">
 							<label>Contraseña<span class="req">*</span>
-							</label> <input type="password" required autocomplete="off" />
+							</label> <input type="password" class="form-control" th:field="*{contrasena}" id="contrasena" name="contrasena" required="required"/>
 						</div>
 
 						<button type="submit" class="button button-block">Validar</button>

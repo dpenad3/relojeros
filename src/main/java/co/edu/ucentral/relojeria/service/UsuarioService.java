@@ -7,5 +7,5 @@ public interface UsuarioService {
 	public void registro(Usuario user);
 	public void modificar(Usuario user);
 	public void login(int cedula, String contrasenia);
-
+	
 }

@@ -1,14 +1,34 @@
 package co.edu.ucentral.relojeria.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="reloj")
 public class Reloj {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	private String nombre;
 	private String marca;
 	private int precio;
+	@Column(name="descripción")
 	private String descripcion;
 	private int cantidad;
+	@Column(name="id_categoria")
 	private int categoria;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -48,7 +68,7 @@ public class Reloj {
 	
 	@Override
 	public String toString() {
-		return "Reloj [nombre=" + nombre + ", marca=" + marca + ", precio=" + precio + ", descripcion=" + descripcion
-				+ ", cantidad=" + cantidad + ", categoria=" + categoria + "]";
+		return "Reloj [id=" + id + ", nombre=" + nombre + ", marca=" + marca + ", precio=" + precio + ", descripcion="
+				+ descripcion + ", cantidad=" + cantidad + ", categoria=" + categoria + "]";
 	}
 }

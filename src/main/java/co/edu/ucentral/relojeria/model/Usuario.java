@@ -1,14 +1,25 @@
 package co.edu.ucentral.relojeria.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="usuario")
 public class Usuario {
 
+	@Id
+	@Column(name="id")
 	private int cedula;
 	private String nombre;
 	private String celular;
 	private String correo;
 	private String contrasena;
-	private String estado;
-	private String rol;
+	@Column(name="id_estado")
+	private int estado;
+	@Column(name="id_rol")
+	private int rol;
 	
 	public int getCedula() {
 		return cedula;
@@ -40,16 +51,16 @@ public class Usuario {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
-	public String getEstado() {
+	public int getEstado() {
 		return estado;
 	}
-	public void setEstado(String estado) {
+	public void setEstado(int estado) {
 		this.estado = estado;
 	}
-	public String getRol() {
+	public int getRol() {
 		return rol;
 	}
-	public void setRol(String rol) {
+	public void setRol(int rol) {
 		this.rol = rol;
 	}
 	
