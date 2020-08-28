@@ -1,7 +1,5 @@
 package co.edu.ucentral.relojeria.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,21 +21,27 @@ public class RelojController {
 	
 	@RequestMapping(value= "/catalogo", method=RequestMethod.GET)
 	public String mostrarRelojes(Model model) {
-		List<Reloj> lista = relojservice.mostrar();
-		model.addAttribute("relojes", lista);
+		model.addAttribute("relojes", relojservice.mostrar());
 		return "relojes/catalogo";
 	}
 	
 	@RequestMapping(value="/create", method=RequestMethod.GET)
-	public String crearReloj() {
+	public String crearReloj(Model model) {
+		model.addAttribute("reloj", new Reloj());
 		return "relojes/formReloj";
+	}
+	
+	@RequestMapping(value= "/listado", method=RequestMethod.GET)
+	public String listaRelojes(Model model) {
+		model.addAttribute("relojes", relojservice.mostrar());
+		return "relojes/listado";
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String guardar(Reloj reloj, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors())
 		{
-			return "relojes/formEmpleo";
+			return "relojes/formReloj";
 		}
 		relojservice.registro(reloj);
 		attributes.addAttribute("msg", "Registro guardado");
@@ -46,14 +50,14 @@ public class RelojController {
 	
 	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
 	public String editarReloj(@PathVariable("id") int id, Model model) {
-		Reloj empleo = relojservice.buscarId(id);
-		model.addAttribute("reloj", empleo);
-		return "relojes/formEmpleo";
+		Reloj reloj = relojservice.buscarId(id);
+		model.addAttribute("reloj", reloj);
+		return "relojes/formReloj";
 	}
 	
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
 	public String eliminarReloj(@PathVariable("id") int id, Model model) {
-		relojservice.elimiar(id);
+		relojservice.eliminar(id);
 		return "relojes/listado";
 	}
 }

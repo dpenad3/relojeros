@@ -1,9 +1,10 @@
 package co.edu.ucentral.relojeria.JPA;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-
 import co.edu.ucentral.relojeria.model.Usuario;
 import co.edu.ucentral.relojeria.repository.UsuarioRepository;
 import co.edu.ucentral.relojeria.service.UsuarioService;
@@ -31,6 +32,16 @@ public class UsuarioServiceJPA implements UsuarioService{
 	@Override
 	public void login(int cedula, String contrasenia) {
 		// TODO Auto-generated method stub
+	}
+
+
+	@Override
+	public Usuario buscarUsaurioPorId(int idUsuario) {
+		Optional<Usuario> optional= repo.findById(idUsuario);
+		if(optional.isPresent()) {
+			return optional.get();
+		}
+		return null;
 	}
 
 }

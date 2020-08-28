@@ -44,7 +44,7 @@ public class RelojServiceJPA implements RelojService{
 	}
 
 	@Override
-	public void elimiar(int id) {
+	public void eliminar(int id) {
 		repo.deleteById(id);
 	}
 

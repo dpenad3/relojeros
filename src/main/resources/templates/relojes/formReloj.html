@@ -7,53 +7,50 @@
 	<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
 	<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
 	<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
-	<link rel="stylesheet" th:href="@{../css/style.css}">
+	<link rel="stylesheet" th:href="@{../../css/style.css}">
 	<!-- Título de la página  e icono-->
-	<title>OnliReloj | Registro</title>
-	<link rel="icon" type="image/png" th:href="@{../images/icono.png}">
+	<title>OnliReloj | Reloj</title>
+	<link rel="icon" type="image/png" th:href="@{../../images/icono.png}">
 </head>
 <body>
 
 	<header th:insert="/fragments/menu :: menu-principal"></header>
 	<main>
-		<h1>Registrate gratis</h1>
-		<form th:action="@{/usuario/save}" th:object="${usuario}"
+		<h1>Nuevo Producto</h1>
+		<form th:action="@{/relojes/save}" th:object="${reloj}"
 			method="post">
 			<div class="form-group">
 				<label>Nombre</label> <input type="text" class="form-control"
 					th:field="*{nombre}" id="nombre" name="nombre" required="required" />
 			</div>
 			<div class="form-group">
-				<label>Correo</label> <input type="email" class="form-control"
-					th:field="*{correo}" id="correo" name="correo" required="required" />
+				<label>Marca</label> <input type="text" class="form-control"
+					th:field="*{marca}" id="marca" name="marca" required="required" />
 			</div>
 			<div class="form-group">
-				<label>Celular</label> <input type="number" class="form-control"
-					th:field="*{celular}" id="celular" name="celular"
+				<label>Precio</label> <input type="number" class="form-control"
+					th:field="*{precio}" id="precio" name="celular"
 					required="required" />
 			</div>
 			<div class="form-group">
-				<label>Identificación</label> <input type="number"
-					class="form-control" th:field="*{cedula}" id="cedula" name="cedula"
+				<label>Descripción</label> <input type="text"
+					class="form-control" th:field="*{descripcion}" id="descripcion" name="descripcion"
 					required="required" />
 			</div>
 			<div class="form-group">
-				<label>Contraseña</label> <input type="password"
-					class="form-control" th:field="*{contrasena}" id="contrasena"
-					name="contrasena" required="required" />
+				<label>Cantidad</label> <input type="number" class="form-control"
+					th:field="*{cantidad}" id="cantidad" name="cantidad" required="required" />
 			</div>
 			<div class="form-group">
-				<label>País</label> <input type="text" class="form-control"
-					th:field="*{pais}" id="pais" name="pais" required="required" />
+				<label for="categoria">Categoría</label> 
+				<select class="form-control" th:field="*{categoria}" name="categoria" id="categoria">
+					<option th:value="1">Digital</option>
+					<option th:value="1">Análogo</option>
+				</select>
 			</div>
 			<div class="form-group">
-				<label>Ciudad</label> <input type="text" class="form-control"
-					th:field="*{ciudad}" id="ciudad" name="ciudad" required="required" />
-			</div>
-			<div class="form-group">
-				<label>Dirección</label> <input type="text" class="form-control"
-					th:field="*{direccion}" id="direccion" name="direccion"
-					required="required" />
+				<label>Imágen</label> <input type="number" class="form-control"
+					th:field="*{imagen}" id="imagen" name="imagen" required="required" />
 			</div>
 			<button type="submit" class="btn btn-primary">Validar</button>
 

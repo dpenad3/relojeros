@@ -22,6 +22,7 @@ public class Reloj {
 	private int cantidad;
 	@Column(name="id_categoria")
 	private int categoria;
+	private int imagen;
 	
 	public int getId() {
 		return id;
@@ -65,10 +66,16 @@ public class Reloj {
 	public void setCategoria(int categoria) {
 		this.categoria = categoria;
 	}
+	public int getImagen() {
+		return imagen;
+	}
+	public void setImagen(int imagen) {
+		this.imagen = imagen;
+	}
 	
 	@Override
 	public String toString() {
 		return "Reloj [id=" + id + ", nombre=" + nombre + ", marca=" + marca + ", precio=" + precio + ", descripcion="
-				+ descripcion + ", cantidad=" + cantidad + ", categoria=" + categoria + "]";
+				+ descripcion + ", cantidad=" + cantidad + ", categoria=" + categoria + ", imagen=" + imagen + "]";
 	}
 }

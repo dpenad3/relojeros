@@ -1,13 +1,13 @@
 package co.edu.ucentral.relojeria.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import co.edu.ucentral.relojeria.model.Usuario;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import co.edu.ucentral.relojeria.service.AdminService;
 
 
@@ -20,8 +20,14 @@ public class AdminController {
 	
 	@RequestMapping(value= "/lista", method=RequestMethod.GET)
 	public String mostrarUsuarios(Model model) {
-		List<Usuario> lista = adminservice.lista();
-		model.addAttribute("usuarios", lista);
+		model.addAttribute("usuarios", adminservice.lista());
 		return "admin/listado";
+	}
+	
+	@RequestMapping(value="/eliminar/{id}")
+	public String eliminarUsuario(@PathVariable("id") Integer idUsuario, RedirectAttributes attributes) {
+		adminservice.eliminarUsuario(idUsuario);
+		attributes.addAttribute("msg", "Usuario eliminado");
+		return "redirect:/admin/lista";
 	}
 }

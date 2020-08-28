@@ -18,8 +18,12 @@ public class Usuario {
 	private String contrasena;
 	@Column(name="id_estado")
 	private int estado;
+	private String direccion;
+	private String pais;
+	private String ciudad;
 	@Column(name="id_rol")
 	private int rol;
+	
 	
 	public int getCedula() {
 		return cedula;
@@ -57,6 +61,24 @@ public class Usuario {
 	public void setEstado(int estado) {
 		this.estado = estado;
 	}
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+	public String getPais() {
+		return pais;
+	}
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
+	public String getCiudad() {
+		return ciudad;
+	}
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
 	public int getRol() {
 		return rol;
 	}
@@ -67,6 +89,7 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "Usuario [cedula=" + cedula + ", nombre=" + nombre + ", celular=" + celular + ", correo=" + correo
-				+ ", contrasena=" + contrasena + ", estado=" + estado + ", rol=" + rol + "]";
+				+ ", contrasena=" + contrasena + ", estado=" + estado + ", direccion=" + direccion + ", pais=" + pais
+				+ ", ciudad=" + ciudad + ", rol=" + rol + "]";
 	}
 }

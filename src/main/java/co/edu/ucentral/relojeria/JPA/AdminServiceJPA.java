@@ -18,14 +18,17 @@ public class AdminServiceJPA implements AdminService{
 	
 	@Override
 	public List<Usuario> lista() {
-		System.out.println("BOBOSSSS");
-		System.out.println(repo.findAll());
 		return repo.findAll();
 	}
 
 	@Override
 	public void cambiarEstado() {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void eliminarUsuario(int idUsuario) {
+		repo.deleteById(idUsuario);
 	}
 
 }

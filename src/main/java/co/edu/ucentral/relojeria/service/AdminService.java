@@ -8,5 +8,6 @@ public interface AdminService {
 	
 	public List<Usuario> lista();
 	public void cambiarEstado();
-
+	public void eliminarUsuario(int idUsuario);
+	
 }

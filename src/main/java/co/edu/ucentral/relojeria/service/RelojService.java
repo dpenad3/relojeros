@@ -10,6 +10,6 @@ public interface RelojService {
 	public void modificar(Reloj reloj);
 	public List<Reloj> mostrar();
 	public Reloj buscarId(int id);
-	public void elimiar(int id);
+	public void eliminar(int id);
 
 }
