@@ -1,9 +1,12 @@
 package co.edu.ucentral.relojeria.controller;
 
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -80,14 +83,23 @@ public class HomeController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String sesion() {
-		return "redirect:/relojes/catalogo";
+		return "gestion/sesion";
 	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+		logoutHandler.logout(request, null, null);
+		return "redirect:/catalogo";
+	}
+
 	
 	@ModelAttribute
 	public void setGenericos(Model model) {
 		Reloj relojSearch = new Reloj();		
 		model.addAttribute("search", relojSearch);
 		model.addAttribute("categorias", categoriaService.listarCategorias());
+		model.addAttribute("relojes", relojservice.mostrar());
 	}
 
 }

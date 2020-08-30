@@ -50,7 +50,9 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter{
 		// Todas las demas URLs de la Aplicacion requieren autenticacion 
 		.anyRequest().authenticated()
 		// El formulario de Login no requiere autenticacion 
-		.and().formLogin().permitAll();
+		.and().formLogin().loginPage("/login").permitAll()
+			.usernameParameter("username")
+	        .passwordParameter("contrasena");
 		} 
 	
 	/*@Bean

@@ -34,6 +34,7 @@
 				<div class="card-body">
 					<p class="card-text" th:text="${reloj.nombre}"></p>
 					<p class="card-text" th:text="${reloj.marca}"></p>
+					<p class="card-text" th:text="${reloj.categoria.nombre}"></p>
 					<a th:href="@{/detalle/{id} (id=${reloj.id})}" class="btn btn-primary" role="button">Detalles</a>
 				</div>
 			</div>
