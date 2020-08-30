@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,8 +22,9 @@ public class Reloj {
 	@Column(name="descripción")
 	private String descripcion;
 	private int cantidad;
-	@Column(name="id_categoria")
-	private int categoria;
+	@OneToOne
+	@JoinColumn(name="id_categoria")
+	private Categoria categoria;
 	private int imagen;
 	
 	public int getId() {
@@ -60,10 +63,10 @@ public class Reloj {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-	public int getCategoria() {
+	public Categoria  getCategoria() {
 		return categoria;
 	}
-	public void setCategoria(int categoria) {
+	public void setCategoria(Categoria  categoria) {
 		this.categoria = categoria;
 	}
 	public int getImagen() {

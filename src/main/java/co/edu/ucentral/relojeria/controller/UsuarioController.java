@@ -16,23 +16,6 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService userService;
 	
-	@RequestMapping(value="/registro", method=RequestMethod.GET)
-	public String registro(Model model) {
-		model.addAttribute("usuario", new Usuario());
-		return "gestion/registro.html";
-	}
-	
-	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public String guardar(Usuario usuario) {
-		userService.registro(usuario);
-		return "redirect:relojes/catalogo";
-	}
-	
-	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String sesion() {
-		return "gestion/sesion";
-	}
-	
 	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
 	public String editarUsuario(@PathVariable("id") int id, Model model) {
 		Usuario user = userService.buscarUsaurioPorId(id);

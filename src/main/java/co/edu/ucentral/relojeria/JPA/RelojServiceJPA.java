@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import co.edu.ucentral.relojeria.model.Reloj;
@@ -46,6 +47,11 @@ public class RelojServiceJPA implements RelojService{
 	@Override
 	public void eliminar(int id) {
 		repo.deleteById(id);
+	}
+
+	@Override
+	public List<Reloj> buscarByExample(Example<Reloj> example) {
+		return repo.findAll(example);
 	}
 
 }

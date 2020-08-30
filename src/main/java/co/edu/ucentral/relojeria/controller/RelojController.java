@@ -1,5 +1,7 @@
 package co.edu.ucentral.relojeria.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import co.edu.ucentral.relojeria.model.Categoria;
 import co.edu.ucentral.relojeria.model.Reloj;
+import co.edu.ucentral.relojeria.service.CategoriaService;
 import co.edu.ucentral.relojeria.service.RelojService;
 
 @Controller
@@ -18,15 +23,13 @@ public class RelojController {
 	@Autowired
 	private RelojService relojservice;
 	
-	
-	@RequestMapping(value= "/catalogo", method=RequestMethod.GET)
-	public String mostrarRelojes(Model model) {
-		model.addAttribute("relojes", relojservice.mostrar());
-		return "relojes/catalogo";
-	}
+	@Autowired
+	private CategoriaService categoriaService;
 	
 	@RequestMapping(value="/create", method=RequestMethod.GET)
 	public String crearReloj(Model model) {
+		List<Categoria> lista = categoriaService.listarCategorias();
+		model.addAttribute("categorias", lista);
 		model.addAttribute("reloj", new Reloj());
 		return "relojes/formReloj";
 	}
@@ -58,6 +61,6 @@ public class RelojController {
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
 	public String eliminarReloj(@PathVariable("id") int id, Model model) {
 		relojservice.eliminar(id);
-		return "relojes/listado";
+		return "redirect:/relojes/listado";
 	}
 }

@@ -18,8 +18,6 @@ public class UsuarioServiceJPA implements UsuarioService{
 	
 	@Override
 	public void registro(Usuario user) {
-		user.setEstado(3);
-		user.setRol(1);
 		repo.save(user);
 	}
 		

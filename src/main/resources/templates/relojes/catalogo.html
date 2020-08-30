@@ -14,33 +14,30 @@
 <body>
 	<header th:insert="fragments/menu :: menu-principal"> </header>
 	<main role="main">
-		<div class="card">
-			<img src="../images/1.PNG" class="card-img-top" alt="...">
-			<div class="card-body">
-				<p class="card-text">Marca del reloj</p>
-				<a href="#" class="btn btn-primary">Detalles</a>
+		<div class="jumbotron">
+			<div class="container">
+				<h3>Catálogo</h3>
+				Puedes buscar por categoría.
+				<form th:action="@{/search}" method="get" class="form-inline" th:object="${search}">
+					<select th:field="*{categoria.id}" class="custom-select custom-select mb-3">
+						<option th:value="${null}" selected>Seleccione una categoría</option>
+						<option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}" ></option>
+						
+					</select>&nbsp;
+					<button type="submit" class="btn btn-primary mb-3">Buscar</button>
+				</form>
 			</div>
 		</div>
-		<div class="card">
-			<img src="../images/2.PNG" class="card-img-top" alt="...">
-			<div class="card-body">
-				<p class="card-text">Marca del reloj</p>
-				<a href="#" class="btn btn-primary">Detalles</a>
+		<div class="container">
+			<div class="card" th:each="reloj : ${relojes}">
+				<img src="${reloj.imagen}" class="card-img-top" alt="...">
+				<div class="card-body">
+					<p class="card-text" th:text="${reloj.nombre}"></p>
+					<p class="card-text" th:text="${reloj.marca}"></p>
+					<a th:href="@{/detalle/{id} (id=${reloj.id})}" class="btn btn-primary" role="button">Detalles</a>
+				</div>
 			</div>
-		</div>
-		<div class="card">
-			<img src="../images/3.PNG" class="card-img-top" alt="...">
-			<div class="card-body">
-				<p class="card-text">Marca del reloj</p>
-				<a href="#" class="btn btn-primary">Detalles</a>
-			</div>
-		</div>
-		<div class="card">
-			<img src="../images/4.PNG" class="card-img-top" alt="...">
-			<div class="card-body">
-				<p class="card-text">Marca del reloj</p>
-				<a href="#" class="btn btn-primary">Detalles</a>
-			</div>
+			<hr>
 		</div>
 	</main>
 	<footer th:insert="fragments/footer :: pie-pagina" class="footer">

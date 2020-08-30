@@ -33,7 +33,7 @@
 					<th>Operaciones</th>
 				</tr>
 				<tr th:each="usuario:${usuarios}">
-					<td th:text="${usuario.cedula}"></td>
+					<td th:text="${usuario.id}"></td>
 					<td th:text="${usuario.nombre}"></td>
 					<td th:text="${usuario.celular}"></td>
 					<td th:text="${usuario.correo}"></td>
@@ -41,11 +41,11 @@
 					<td th:text="${usuario.ciudad}"></td>
 					<td th:text="${usuario.direccion}"></td>
 					<td>
-						<span th:if="${usuario.estado==3}"class="badge badge-success">Activo</span> 
-						<span th:unless="${usuario.estado==3}" class="badge badge-danger">Inactivo</span>
+						<span th:if="${usuario.estatus==1}"class="badge badge-success">Activo</span> 
+						<span th:unless="${usuario.estatus==1}" class="badge badge-danger">Inactivo</span>
 					</td>
 					<td>
-						<a th:href="@{/admin/eliminar/{id} (id=${usuario.cedula}) }" onclick="return confirm('¿Estas seguro?')" class="badge badge-danger" role="button" title="Eliminar el registro.">Elimnar<i class="fas fa-trash" aria-hidden="true"></i></a>
+						<a th:href="@{/admin/eliminar/{id} (id=${usuario.id}) }" onclick="return confirm('¿Estas seguro?')" class="badge badge-danger" role="button" title="Eliminar el registro.">Elimnar<i class="fas fa-trash" aria-hidden="true"></i></a>
                     	<a href="#" onclick="return confirm('¿Quiere bloquear el acceso al usuario?')" class="badge badge-waring" role="button" title="Bloquear el acceso al sistema para este usuario.">Inactivar<i class="fas fa-lock" aria-hidden="true"></i></a>	
                     	<a href="#" onclick="return confirm('¿Desea desbloquear el usuario?')" class="badge badge-waring" role="button" title="Permitir el acceso al sistema a este usuario.">Activar<i class="fas fa-unlock" aria-hidden="true"></i></a>
 					</td>

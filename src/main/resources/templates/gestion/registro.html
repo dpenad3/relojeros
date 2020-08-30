@@ -17,8 +17,7 @@
 	<header th:insert="/fragments/menu :: menu-principal"></header>
 	<main>
 		<h1>Registrate gratis</h1>
-		<form th:action="@{/usuario/save}" th:object="${usuario}"
-			method="post">
+		<form th:action="@{/singup}" method="post" th:object="${usuario}">  
 			<div class="form-group">
 				<label>Nombre</label> <input type="text" class="form-control"
 					th:field="*{nombre}" id="nombre" name="nombre" required="required" />
@@ -34,7 +33,12 @@
 			</div>
 			<div class="form-group">
 				<label>Identificación</label> <input type="number"
-					class="form-control" th:field="*{cedula}" id="cedula" name="cedula"
+					class="form-control" th:field="*{id}" id="id" name="id"
+					required="required" />
+			</div>
+			<div class="form-group">
+				<label>Username</label> <input type="text"
+					class="form-control" th:field="*{username}" id="username" name="username"
 					required="required" />
 			</div>
 			<div class="form-group">

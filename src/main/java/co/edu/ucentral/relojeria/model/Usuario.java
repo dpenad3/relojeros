@@ -1,35 +1,41 @@
 package co.edu.ucentral.relojeria.model;
 
-import javax.persistence.Column;
+
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="usuario")
+@Table(name="usuarios")
 public class Usuario {
 
 	@Id
-	@Column(name="id")
-	private int cedula;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	private String nombre;
-	private String celular;
 	private String correo;
+	private String username;
 	private String contrasena;
-	@Column(name="id_estado")
-	private int estado;
-	private String direccion;
+	private int estatus;
+	private String celular;
 	private String pais;
+	private String direccion;
 	private String ciudad;
-	@Column(name="id_rol")
-	private int rol;
-	
-	
-	public int getCedula() {
-		return cedula;
+	@ManyToMany
+	@JoinTable(name="usuarioperfil", joinColumns=@JoinColumn(name="idUsuario"), inverseJoinColumns=@JoinColumn(name="idPerfil"))
+	private List<Perfil> perfiles;
+	public int getId() {
+		return id;
 	}
-	public void setCedula(int cedula) {
-		this.cedula = cedula;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getNombre() {
 		return nombre;
@@ -37,17 +43,17 @@ public class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getCelular() {
-		return celular;
-	}
-	public void setCelular(String celular) {
-		this.celular = celular;
-	}
 	public String getCorreo() {
 		return correo;
 	}
 	public void setCorreo(String correo) {
 		this.correo = correo;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getContrasena() {
 		return contrasena;
@@ -55,17 +61,17 @@ public class Usuario {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
-	public int getEstado() {
-		return estado;
+	public int getEstatus() {
+		return estatus;
 	}
-	public void setEstado(int estado) {
-		this.estado = estado;
+	public void setEstatus(int estatus) {
+		this.estatus = estatus;
 	}
-	public String getDireccion() {
-		return direccion;
+	public String getCelular() {
+		return celular;
 	}
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 	public String getPais() {
 		return pais;
@@ -73,23 +79,38 @@ public class Usuario {
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
 	public String getCiudad() {
 		return ciudad;
 	}
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
-	public int getRol() {
-		return rol;
+	public List<Perfil> getPerfiles() {
+		return perfiles;
 	}
-	public void setRol(int rol) {
-		this.rol = rol;
+	public void setPerfiles(List<Perfil> perfiles) {
+		this.perfiles = perfiles;
 	}
 	
+	public void agregarPerfil(Perfil perfil) {
+		if(perfiles==null) {
+			perfiles = new LinkedList<Perfil>();
+		}
+		perfiles.add(perfil);
+	}
 	@Override
 	public String toString() {
-		return "Usuario [cedula=" + cedula + ", nombre=" + nombre + ", celular=" + celular + ", correo=" + correo
-				+ ", contrasena=" + contrasena + ", estado=" + estado + ", direccion=" + direccion + ", pais=" + pais
-				+ ", ciudad=" + ciudad + ", rol=" + rol + "]";
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", correo=" + correo + ", username=" + username
+				+ ", contrasena=" + contrasena + ", estatus=" + estatus + ", celular=" + celular + ", pais=" + pais
+				+ ", direccion=" + direccion + ", ciudad=" + ciudad + ", perfiles=" + perfiles + "]";
 	}
+	
+	
+	
 }
