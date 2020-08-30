@@ -30,13 +30,18 @@
 		</div>
 		<div class="container">
 			<div class="card" th:each="reloj : ${relojes}">
-				<img src="${reloj.imagen}" class="card-img-top" alt="...">
+				<img th:src="@{/images/}+${reloj.imagen}+@{.PNG}" class="card-img-top" alt="...">
 				<div class="card-body">
-					<p class="card-text" th:text="${reloj.nombre}"></p>
-					<p class="card-text" th:text="${reloj.marca}"></p>
-					<p class="card-text" th:text="${reloj.categoria.nombre}"></p>
+					<strong>Nombre: </strong><span class="card-text" th:text="${reloj.nombre}"></span>
+					<strong>Marca: </strong><span class="card-text" th:text="${reloj.marca}"></span>
+					<strong>Categoria: </strong><span class="card-text" th:text="${reloj.categoria.nombre}"></span>
 					<a th:href="@{/detalle/{id} (id=${reloj.id})}" class="btn btn-primary" role="button">Detalles</a>
 				</div>
+				<section class="grid">
+					<div class="item">
+						<div class="item-contenido"></div>
+					</div>
+				</section>
 			</div>
 			<hr>
 		</div>
@@ -46,8 +51,7 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </body>
