@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,6 +49,13 @@ public class HomeController {
 	public String mostrarRelojes(Model model) {
 		model.addAttribute("relojes", relojservice.mostrar());
 		return "relojes/catalogo";
+	}
+	
+	@RequestMapping(value="/detalle/{id}", method=RequestMethod.GET)
+	public String detalleReloj(@PathVariable("id") int id, Model model) {
+		Reloj reloj = relojservice.buscarId(id);
+		model.addAttribute("reloj", reloj);
+		return "relojes/detalle";
 	}
 	
 	@GetMapping("/search")

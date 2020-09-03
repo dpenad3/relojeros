@@ -58,9 +58,11 @@ public class RelojController {
 		return "relojes/formReloj";
 	}
 	
+	
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
 	public String eliminarReloj(@PathVariable("id") int id, Model model) {
 		relojservice.eliminar(id);
 		return "redirect:/relojes/listado";
 	}
+	
 }

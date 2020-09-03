@@ -47,8 +47,8 @@
 					<td>
 						<a th:href="@{/admin/eliminar/{id} (id=${usuario.id}) }" onclick="return confirm('¿Estas seguro?')" class="badge badge-danger" role="button" title="Eliminar el registro.">Elimnar<i class="fas fa-trash" aria-hidden="true"></i></a>
 						
-                    	<a href="#" onclick="return confirm('¿Quiere bloquear el acceso al usuario?')" class="badge badge-waring" role="button" th:if="${usuario.estatus==1}">Inactivar<i class="fas fa-lock" aria-hidden="true"></i></a>	
-                    	<a href="#" onclick="return confirm('¿Desea desbloquear el usuario?')" class="badge badge-waring" role="button" th:unless="${usuario.estatus==1}">Activar<i class="fas fa-unlock" aria-hidden="true"></i></a>
+                    	<a th:href="@{/admin/inactivar/{id} (id=${usuario.id}) }" onclick="return confirm('¿Quiere bloquear el acceso al usuario?')" class="badge badge-waring" role="button" th:if="${usuario.estatus==1}">Inactivar<i class="fas fa-lock" aria-hidden="true"></i></a>	
+                    	<a th:href="@{/admin/activar/{id} (id=${usuario.id}) }"onclick="return confirm('¿Desea desbloquear el usuario?')" class="badge badge-waring" role="button" th:unless="${usuario.estatus==1}">Activar<i class="fas fa-unlock" aria-hidden="true"></i></a>
 					</td>
 				</tr>
 			</table>
