@@ -17,7 +17,7 @@
 	<header th:insert="/fragments/menu :: menu-principal"></header>
 	<main>
 		<h1>Registrate gratis</h1>
-		<form th:action="@{/singup}" method="post" th:object="${usuario}">  
+		<form th:action="@{/entrar}" method="post" th:object="${usuario}">  
 			<div class="form-group">
 				<label>Nombre</label> <input type="text" class="form-control"
 					th:field="*{nombre}" id="nombre" name="nombre" required="required" />

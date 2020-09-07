@@ -4,16 +4,17 @@ package co.edu.ucentral.relojeria.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.data.domain.Example;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -37,8 +38,8 @@ public class HomeController {
 	@Autowired
 	private CategoriaService categoriaService;
 	
-	/*@Autowired
-	private PasswordEncoder passwordEncoder;*/
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@GetMapping("/")
 	public String mostrarHome() {
@@ -71,19 +72,15 @@ public class HomeController {
 		return "gestion/registro";
 	}
 	
-	@PostMapping("/signup")
-	public String guardar(Usuario usuario, BindingResult result, RedirectAttributes attributes) {
-		/*System.out.println("SI LLEGA");
+	@RequestMapping(value="/entrar", method=RequestMethod.POST)
+	public String guardar(Usuario usuario, RedirectAttributes attributes) {
+		System.out.println("------------------------------------------------------------OLEEEEEE-----------");
 		String pwdPlano = usuario.getContrasena();
 		String pwdEncrip = passwordEncoder.encode(pwdPlano);
-		usuario.setContrasena(pwdEncrip);*/
+		usuario.setContrasena(pwdEncrip);
 		usuario.setEstatus(1);
 		Perfil perfil = new Perfil();
 		perfil.setId(1);
-		if(result.hasErrors())
-		{
-			return "gestion/registro";
-		}
 		userService.registro(usuario);
 		attributes.addFlashAttribute("msg", "Registro exitoso");
 		return "redirect:relojes/catalogo";
@@ -108,6 +105,12 @@ public class HomeController {
 		model.addAttribute("search", relojSearch);
 		model.addAttribute("categorias", categoriaService.listarCategorias());
 		model.addAttribute("relojes", relojservice.mostrar());
+	}
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
 	}
 
 }

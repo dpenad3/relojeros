@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="https://kit.fontawesome.com/ec5f17387f.js"></script>
+	<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+	<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{../../css/style.css}">
+	<!-- Título de la página  e icono-->
+	<title>OnliReloj | Modificar</title>
+	<link rel="icon" type="image/png" th:href="@{../../images/icono.png}">
+</head>
+<body>
+	<header th:insert="/fragments/menu :: menu-principal"></header>
+	<main>
+		<h1>Modificar datos personales</h1>
+		<div class="container" th:object="${usuario}">
+			<form th:action="@{/usuario/edit}" method="post">
+			<div class="form-group">
+				<label>Identificación</label> <input type="number"
+					class="form-control" th:field="*{id}" id="id" name="id"
+					required="required" readonly="readonly"/>
+			</div>
+			<div class="form-group">
+				<label>Username</label> <input type="text"
+					class="form-control" th:field="*{username}" id="username" name="username"
+					required="required" readonly="readonly"/>
+			</div>
+				<div class="form-group">
+					<label>Nombre</label> <input type="text" class="form-control"
+						th:field="*{nombre}" id="nombre" name="nombre" required="required" />
+				</div>
+				<div class="form-group">
+					<label>Correo</label> <input type="email" class="form-control"
+						th:field="*{correo}" id="correo" name="correo" required="required" />
+				</div>
+				<div class="form-group">
+					<label>Celular</label> <input type="number" class="form-control"
+						th:field="*{celular}" id="celular" name="celular"
+						required="required" />
+				</div>
+				<div class="form-group">
+					<label>Contraseña</label> <input type="password"
+						class="form-control" th:field="*{contrasena}" id="contrasena"
+						name="contrasena" required="required" />
+				</div>
+				<div class="form-group">
+					<label>País</label> <input type="text" class="form-control"
+						th:field="*{pais}" id="pais" name="pais" required="required" />
+				</div>
+				<div class="form-group">
+					<label>Ciudad</label> <input type="text" class="form-control"
+						th:field="*{ciudad}" id="ciudad" name="ciudad" required="required" />
+				</div>
+				<div class="form-group">
+					<label>Dirección</label> <input type="text" class="form-control"
+						th:field="*{direccion}" id="direccion" name="direccion"
+						required="required" />
+				</div>
+				<button type="submit" class="btn btn-primary">Validar</button>
+			</form>
+		</div>
+	</main>
+	<footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
+
+    <!-- ================================================== -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

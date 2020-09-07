@@ -27,6 +27,16 @@ public class Reloj {
 	private Categoria categoria;
 	private int imagen;
 	
+	public Reloj() {
+		
+	}
+	
+	public Reloj(String nombre, String marca, int precio) {
+		this.nombre = nombre;
+		this.marca = marca;
+		this.precio = precio;
+	}
+	
 	public int getId() {
 		return id;
 	}

@@ -42,4 +42,10 @@ public class UsuarioServiceJPA implements UsuarioService{
 		return null;
 	}
 
+
+	@Override
+	public Usuario bucarPorUserName(String username) {
+		return repo.findByUsername(username);
+	}
+
 }

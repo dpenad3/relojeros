@@ -8,5 +8,6 @@ public interface UsuarioService {
 	public void modificar(Usuario user);
 	public void login(int cedula, String contrasenia);
 	public Usuario buscarUsaurioPorId(int idUsuario);
+	public Usuario bucarPorUserName(String username);
 	
 }

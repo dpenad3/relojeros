@@ -6,4 +6,5 @@ import co.edu.ucentral.relojeria.model.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
+	public Usuario findByUsername(String username);
 }

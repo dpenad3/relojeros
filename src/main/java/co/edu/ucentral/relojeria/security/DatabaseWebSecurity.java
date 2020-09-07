@@ -42,11 +42,13 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter{
 		.antMatchers("/", 
 					 "/catalogo",
 					 "/login",
-				     "/signup", 
+				     "/signup",
+					 "/entrar", 
 				     "/search").permitAll()
 		.antMatchers("/admin/***").hasAnyAuthority("ADMINISTRADOR")
 		.antMatchers("/relojes/***").hasAnyAuthority("ADMINISTRADOR", "USUARIO")
 		.antMatchers("/usuario/***").hasAnyAuthority("ADMINISTRADOR", "USUARIO")
+		.antMatchers("/venta/***").hasAnyAuthority("ADMINISTRADOR", "USUARIO")
 		// Todas las demas URLs de la Aplicacion requieren autenticacion 
 		.anyRequest().authenticated()
 		// El formulario de Login no requiere autenticacion 
@@ -55,9 +57,9 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter{
 	        .passwordParameter("contrasena");
 		} 
 	
-	/*@Bean
+	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-	}*/
+	}
 	
 }

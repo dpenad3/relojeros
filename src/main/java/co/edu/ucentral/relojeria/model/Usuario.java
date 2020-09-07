@@ -31,6 +31,7 @@ public class Usuario {
 	@ManyToMany
 	@JoinTable(name="usuarioperfil", joinColumns=@JoinColumn(name="idUsuario"), inverseJoinColumns=@JoinColumn(name="idPerfil"))
 	private List<Perfil> perfiles;
+	
 	public int getId() {
 		return id;
 	}

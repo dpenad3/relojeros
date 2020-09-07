@@ -19,11 +19,11 @@
 			<li class="nav-item"><a class="nav-link" th:href="@{/catalogo}">Catálogo</a>
 			</li>
 			<li class="nav-item"><a class="nav-link"
-				sec:authorize="hasAnyAuthority('USUARIO', 'ADMINISTRADOR')" th:href="@{/}">Historial</a>
+				sec:authorize="hasAnyAuthority('USUARIO', 'ADMINISTRADOR')" th:href="@{/venta/compras}">Historial</a>
 			</li>
 			<li class="nav-item"><a class="nav-link"
 				sec:authorize="hasAnyAuthority('USUARIO', 'ADMINISTRADOR')"
-				th:href="@{/usuario/edit/{}}">Modificar</a></li>
+				th:href="@{/usuario/edit}">Modificar</a></li>
 			<li class="nav-item dropdown"
 				sec:authorize="hasAnyAuthority('ADMINISTRADOR')"><a
 				class="nav-link dropdown-toggle" th:href="@{/admin/lista}"

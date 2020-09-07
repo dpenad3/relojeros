@@ -29,7 +29,7 @@
 					<p th:text="${reloj.descripcion}"></p>
 					<strong>Cantidad Disponible: </strong><span  th:text="${reloj.cantidad}"></span><br>
 					<strong>Precio: $</strong><span class="card-text" th:text="${reloj.precio}"></span><br>
-					<a href="#" class="btn btn-success">Comprar</a>
+					<a th:href="@{/venta/comprar/{id}  (id=${reloj.id})}" class="btn btn-success">Comprar</a>
 					<a th:href="@{/catalogo}" class="btn btn-primary">Volver</a>
 				</div>
 			</div>
