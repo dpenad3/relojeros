@@ -44,7 +44,7 @@
 					<td th:text="${reloj.precio}"></td>
 					<td th:text="${reloj.descripcion}"></td>
 					<td th:text="${reloj.cantidad}"></td>
-					<td th:text="${reloj.categoria==1 ? 'Digital':'Análogo'}"></td>
+					<td th:text="${reloj.categoria.nombre}"></td>
 					<td th:text="${reloj.imagen}"></td>
 					<td><a th:href="@{/relojes/edit/{id} (id=${reloj.id})}"
 						class="btn btn-success">editar</a>

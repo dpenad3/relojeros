@@ -1,6 +1,8 @@
 package co.edu.ucentral.relojeria.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +65,8 @@ public class HomeController {
 	public String listarRelojes(@ModelAttribute("search") Reloj reloj, Model model) {
 		System.out.println("BUSCANDO POR: " + reloj);
 		Example<Reloj> example = Example.of(reloj);
-		model.addAttribute("relojes", relojservice.buscarByExample(example));
+		List<Reloj> lista = relojservice.buscarByExample(example);
+		model.addAttribute("relojes", lista);
 		return "relojes/catalogo";
 	}
 	
@@ -74,16 +77,16 @@ public class HomeController {
 	
 	@RequestMapping(value="/entrar", method=RequestMethod.POST)
 	public String guardar(Usuario usuario, RedirectAttributes attributes) {
-		System.out.println("------------------------------------------------------------OLEEEEEE-----------");
-		String pwdPlano = usuario.getContrasena();
+		String pwdPlano = usuario.getPassword();
 		String pwdEncrip = passwordEncoder.encode(pwdPlano);
-		usuario.setContrasena(pwdEncrip);
+		usuario.setPassword(pwdEncrip);
 		usuario.setEstatus(1);
 		Perfil perfil = new Perfil();
-		perfil.setId(1);
+		perfil.setId(2);
+		usuario.agregarPerfil(perfil);
 		userService.registro(usuario);
 		attributes.addFlashAttribute("msg", "Registro exitoso");
-		return "redirect:relojes/catalogo";
+		return "redirect:/catalogo";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)

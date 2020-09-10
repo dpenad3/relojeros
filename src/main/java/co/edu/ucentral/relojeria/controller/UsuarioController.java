@@ -28,7 +28,7 @@ public class UsuarioController {
 		model.addAttribute("usuario", new Usuario());
 		sesion.getAttribute("usuario");
 		Usuario usuario = userService.bucarPorUserName(userName);
-		usuario.setContrasena(null);
+		usuario.setPassword(null);
 		sesion.setAttribute("usuario", usuario);
 		model.addAttribute("usuario", usuario);
 		return "gestion/editar";

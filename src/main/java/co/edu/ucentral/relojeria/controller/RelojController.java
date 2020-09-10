@@ -30,7 +30,6 @@ public class RelojController {
 	public String crearReloj(Model model) {
 		List<Categoria> lista = categoriaService.listarCategorias();
 		model.addAttribute("categorias", lista);
-		model.addAttribute("reloj", new Reloj());
 		return "relojes/formReloj";
 	}
 	
@@ -55,6 +54,8 @@ public class RelojController {
 	public String editarReloj(@PathVariable("id") int id, Model model) {
 		Reloj reloj = relojservice.buscarId(id);
 		model.addAttribute("reloj", reloj);
+		List<Categoria> lista = categoriaService.listarCategorias();
+		model.addAttribute("categorias", lista);
 		return "relojes/formReloj";
 	}
 	

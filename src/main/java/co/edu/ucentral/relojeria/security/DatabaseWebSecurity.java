@@ -23,7 +23,7 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter{
 	protected void configure(AuthenticationManagerBuilder auth) {
 		try {
 			auth.jdbcAuthentication().dataSource(dataSource)
-			.usersByUsernameQuery("select username, contrasena, estatus from Usuarios where username=?")
+			.usersByUsernameQuery("select username, password, estatus from Usuarios where username=?")
 			.authoritiesByUsernameQuery("select u.username, p.perfil from UsuarioPerfil up "
 					+ "inner join Usuarios u on u.id = up.idUsuario "
 					+ "inner join Perfiles p on p.id = up.idPerfil "+ "where u.username = ?");
@@ -44,7 +44,8 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter{
 					 "/login",
 				     "/signup",
 					 "/entrar", 
-				     "/search").permitAll()
+				     "/search",
+				     "/detalle/{id}").permitAll()
 		.antMatchers("/admin/***").hasAnyAuthority("ADMINISTRADOR")
 		.antMatchers("/relojes/***").hasAnyAuthority("ADMINISTRADOR", "USUARIO")
 		.antMatchers("/usuario/***").hasAnyAuthority("ADMINISTRADOR", "USUARIO")
@@ -54,7 +55,7 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter{
 		// El formulario de Login no requiere autenticacion 
 		.and().formLogin().loginPage("/login").permitAll()
 			.usernameParameter("username")
-	        .passwordParameter("contrasena");
+	        .passwordParameter("password");
 		} 
 	
 	@Bean
